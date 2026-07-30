@@ -1,0 +1,5 @@
+the command below shows the script and can be configed:
+sudo nano /usr/local/bin/gatekeeper.sh
+
+enter this combination one after another to save the current configs you have done to the file:
+Ctrl+O, Enter, Ctrl+X
