@@ -1,0 +1,17 @@
+1. Remove the tty1 autologin override:
+sudo rm -rf /etc/systemd/system/getty@tty1.service.d
+sudo systemctl daemon-reexec
+
+2. Remove the gatekeeper trigger from root's bash profile:
+sudo nano /root/.bash_profile
+
+Delete the block you added:
+if [ "$(tty)" = "/dev/tty1" ]; then
+    /usr/local/bin/gatekeeper.sh
+fi
+Save and exit (Ctrl+O, Enter, Ctrl+X).
+
+3. Re-enable lightdm to autostart normally:
+sudo systemctl enable lightdm
+Optional cleanup — remove the script itself:
+sudo rm /usr/local/bin/gatekeeper.sh
