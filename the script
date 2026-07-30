@@ -1,26 +1,21 @@
 #!/bin/bash
 
-clear
-read -p "Whats your name?" name
+name=$(whiptail --inputbox "What's your name?" 10 50 --title "Access Check" 3>&1 1>&2 2>&3)
 
-if [[ "$name" != "yournamehere" ]]; then
-    echo "Wrong. Shutting down."
-    sleep 2
+if [[ "$name" != "oliver" ]]; then
+    whiptail --msgbox "Access denied." 10 50 --title "Access Check"
     systemctl poweroff
     exit 1
 fi
 
-echo "Hello captain!"
-read -p "What's the magic word, captain? " word
+word=$(whiptail --inputbox "Hello captain! What's the magic word?" 10 50 --title "Access Chec>
 
-if [[ "$word" != "The magic word you want" ]]; then
-    echo "Wrong. Shutting down."
-    sleep 2
+if [[ "$word" != "swordfish" ]]; then
+    whiptail --msgbox "Access denied." 10 50 --title "Access Check"
     systemctl poweroff
     exit 1
 fi
 
-echo "Access granted. Booting up..."
-sleep 1
-systemctl start lightdm   # or gdm3/sddm — whatever Kali is using
-exit 
+whiptail --msgbox "Access granted, captain." 10 50 --title "Access Check"
+systemctl start lightdm
+exit 0 
