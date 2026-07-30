@@ -1,0 +1,26 @@
+#!/bin/bash
+
+clear
+read -p "Whats your name?" name
+
+if [[ "$name" != "yournamehere" ]]; then
+    echo "Wrong. Shutting down."
+    sleep 2
+    systemctl poweroff
+    exit 1
+fi
+
+echo "Hello captain!"
+read -p "What's the magic word, captain? " word
+
+if [[ "$word" != "The magic word you want" ]]; then
+    echo "Wrong. Shutting down."
+    sleep 2
+    systemctl poweroff
+    exit 1
+fi
+
+echo "Access granted. Booting up..."
+sleep 1
+systemctl start lightdm   # or gdm3/sddm — whatever Kali is using
+exit 
